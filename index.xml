@@ -6,10 +6,32 @@
     <description>Recent content on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 29 Nov 2019 13:05:43 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 29 Nov 2019 16:05:18 +0800</lastBuildDate>
     
 	<atom:link href="https://homily707.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>This Is for Prm</title>
+      <link>https://homily707.github.io/post/this-is-for-prm/</link>
+      <pubDate>Fri, 29 Nov 2019 16:05:18 +0800</pubDate>
+      
+      <guid>https://homily707.github.io/post/this-is-for-prm/</guid>
+      <description>最优化 线性 算算算算！
+非线性 无约束情况 一阶必要性： 局部极小点 ==&amp;gt;（可推出）该点梯度为0
+二阶必要性： 局部极小点 ==&amp;gt; 梯度为0，且hesse半正定
+有约束情况 一阶必要性： 局部极小点 ==&amp;gt;该点 ▼f(x)*d&amp;gt;= 0，即该点梯度乘以可行方向大于等于0。
+解释：因为有约束的时候，极点可能在边界上取得，边界上的梯度不一定为0
+二阶必要性：解释: 条件1，说明各个方向都上升，最小值无疑。条件二，我也不懂，但我猜这是为了保证其在边界上取到最小值。不管了，反正有公式。
+这个题，好像必考！！让你判断这个点满不满足necessary，其实就是上面说的有约束的一阶必要性。
+解方程 ▼f(x)*d&amp;gt;= 0 即可。
+但我们直接解方程发现 ▼f(x)*d = 1.5*d2 ，
+好像不一定大于0 。但是因为我们的极点是 （0.5，0），而约束条件是 x2&amp;gt;0
+所以我们这个点，它在边界上，只能增加，所以d2&amp;gt;0。 老师的意思应该就是会考这种点在边界上，d只能增加的情况。
+ KT 这个就带公式进去算就行了把。原理我也不太懂。
+最后一章 考概念，就是线搜索，信赖域，直接法啥的意思，就最后一章PPT的前10页。
+好了，复习完了！！！prm要考满分了！！！！！</description>
+    </item>
     
     <item>
       <title>Test</title>
