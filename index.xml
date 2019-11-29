@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>My New Hugo Site</title>
+    <title>Noob Blog</title>
     <link>https://homily707.github.io/</link>
-    <description>Recent content on My New Hugo Site</description>
+    <description>Recent content on Noob Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 29 Nov 2019 16:05:18 +0800</lastBuildDate>
