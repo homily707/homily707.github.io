@@ -6,10 +6,29 @@
     <description>Recent content in Posts on Noob Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 29 Nov 2019 16:05:18 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 30 Nov 2019 16:42:38 +0800</lastBuildDate>
     
 	<atom:link href="https://homily707.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java Core</title>
+      <link>https://homily707.github.io/post/java-core/</link>
+      <pubDate>Sat, 30 Nov 2019 16:42:38 +0800</pubDate>
+      
+      <guid>https://homily707.github.io/post/java-core/</guid>
+      <description>Java-core 包装类型 基本类型不能为null。基本类型的包装类为引用类型，如int-Integer。
+自动装箱：把基本类变为引用类 ，自动拆箱：反之
+包装类型是不变类，一旦创建则不可改变。
+引用类型必须要equals
+枚举类 enum Weekday{ SUN, MON, TUE, WED, THU, FRI, SAT; }  异常 在方法定义的时候，使用throws Xxx表示该方法可能抛出的异常类型。调用方在调用的时候，必须强制捕获这些异常，否则编译器会报错。
+所有的异常，不在调用层捕获，也必须在更高的调用层捕获。所有未捕获的异常，最终也必须在main()方法中捕获。当然测试的时候，main()也可以throws。
+所有异常都可以调用printStackTrace()方法打印异常栈
+catch (Exception e) { // 先记下来再说: e.printStackTrace(); } 多个catch语句按顺序先后判断，只有一个能被执行。
+finally语句块保证有无错误都会执行。
+异常的结构
+Exception │ ├─ RuntimeException │ │ │ ├─ NullPointerException │ │ │ ├─ IndexOutOfBoundsException │ │ │ ├─ SecurityException │ │ │ └─ IllegalArgumentException │ │ │ └─ NumberFormatException │ ├─ IOException │ │ │ ├─ UnsupportedCharsetException │ │ │ ├─ FileNotFoundException │ │ │ └─ SocketException │ ├─ ParseException │ ├─ GeneralSecurityException │ ├─ SQLException │ └─ TimeoutException 日志 Commons Logging 使用Commons Logging只需要和两个类打交道，并且只有两步：</description>
+    </item>
     
     <item>
       <title>This Is for Prm</title>

@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <title>Java Core // Noob Blog</title>
+    <meta charset="utf-8" />
+    <meta name="generator" content="Hugo 0.60.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="李明浩" />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="https://homily707.github.io/css/main.min.f90f5edd436ec7b74ad05479a05705770306911f721193e7845948fb07fe1335.css" />
+
+    
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java Core"/>
+<meta name="twitter:description" content="Java-core 包装类型 基本类型不能为null。基本类型的包装类为引用类型，如int-Integer。
+自动装箱：把基本类变为引用类 ，自动拆箱：反之
+包装类型是不变类，一旦创建则不可改变。
+引用类型必须要equals
+枚举类 enum Weekday{ SUN, MON, TUE, WED, THU, FRI, SAT; }  异常 在方法定义的时候，使用throws Xxx表示该方法可能抛出的异常类型。调用方在调用的时候，必须强制捕获这些异常，否则编译器会报错。
+所有的异常，不在调用层捕获，也必须在更高的调用层捕获。所有未捕获的异常，最终也必须在main()方法中捕获。当然测试的时候，main()也可以throws。
+所有异常都可以调用printStackTrace()方法打印异常栈
+catch (Exception e) { // 先记下来再说: e.printStackTrace(); } 多个catch语句按顺序先后判断，只有一个能被执行。
+finally语句块保证有无错误都会执行。
+异常的结构
+Exception │ ├─ RuntimeException │ │ │ ├─ NullPointerException │ │ │ ├─ IndexOutOfBoundsException │ │ │ ├─ SecurityException │ │ │ └─ IllegalArgumentException │ │ │ └─ NumberFormatException │ ├─ IOException │ │ │ ├─ UnsupportedCharsetException │ │ │ ├─ FileNotFoundException │ │ │ └─ SocketException │ ├─ ParseException │ ├─ GeneralSecurityException │ ├─ SQLException │ └─ TimeoutException 日志 Commons Logging 使用Commons Logging只需要和两个类打交道，并且只有两步："/>
+
+    <meta property="og:title" content="Java Core" />
+<meta property="og:description" content="Java-core 包装类型 基本类型不能为null。基本类型的包装类为引用类型，如int-Integer。
+自动装箱：把基本类变为引用类 ，自动拆箱：反之
+包装类型是不变类，一旦创建则不可改变。
+引用类型必须要equals
+枚举类 enum Weekday{ SUN, MON, TUE, WED, THU, FRI, SAT; }  异常 在方法定义的时候，使用throws Xxx表示该方法可能抛出的异常类型。调用方在调用的时候，必须强制捕获这些异常，否则编译器会报错。
+所有的异常，不在调用层捕获，也必须在更高的调用层捕获。所有未捕获的异常，最终也必须在main()方法中捕获。当然测试的时候，main()也可以throws。
+所有异常都可以调用printStackTrace()方法打印异常栈
+catch (Exception e) { // 先记下来再说: e.printStackTrace(); } 多个catch语句按顺序先后判断，只有一个能被执行。
+finally语句块保证有无错误都会执行。
+异常的结构
+Exception │ ├─ RuntimeException │ │ │ ├─ NullPointerException │ │ │ ├─ IndexOutOfBoundsException │ │ │ ├─ SecurityException │ │ │ └─ IllegalArgumentException │ │ │ └─ NumberFormatException │ ├─ IOException │ │ │ ├─ UnsupportedCharsetException │ │ │ ├─ FileNotFoundException │ │ │ └─ SocketException │ ├─ ParseException │ ├─ GeneralSecurityException │ ├─ SQLException │ └─ TimeoutException 日志 Commons Logging 使用Commons Logging只需要和两个类打交道，并且只有两步：" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://homily707.github.io/post/java-core/" />
+<meta property="article:published_time" content="2019-11-30T16:42:38+08:00" />
+<meta property="article:modified_time" content="2019-11-30T16:42:38+08:00" />
+
+
+  </head>
+  <body>
+    <header class="app-header">
+      <a href="https://homily707.github.io/"><img class="app-header-avatar" src="/avatar.jpg" alt="李明浩" /></a>
+      <h1>Noob Blog</h1>
+      <p>We&#39;re here to put a dent in the universe.</p>
+      <div class="app-header-social">
+        
+          <a target="_blank" href="https://github.com/homily707" rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github">
+  <title>github</title>
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+</svg></a>
+        
+      </div>
+    </header>
+    <main class="app-container">
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class ="post-title">Java Core</h1>
+      <div class="post-meta">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar">
+  <title>calendar</title>
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+          Nov 30, 2019
+        </div>
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock">
+  <title>clock</title>
+  <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+          1 min read
+        </div></div>
+    </header>
+    <div class="post-content">
+      <h1 id="javacore">Java-core</h1>
+<h3 id="heading">包装类型</h3>
+<p>基本类型不能为null。基本类型的包装类为引用类型，如int-Integer。</p>
+<p>自动装箱：把基本类变为引用类 ，自动拆箱：反之</p>
+<p>包装类型是不变类，一旦创建则不可改变。</p>
+<p>引用类型必须要equals</p>
+<h3 id="heading1">枚举类</h3>
+<pre><code>enum Weekday{
+    SUN, MON, TUE, WED, THU, FRI, SAT;
+}
+</code></pre>
+<h3 id="heading2">异常</h3>
+<p>在方法定义的时候，使用<code>throws Xxx</code>表示该方法可能抛出的异常类型。调用方在调用的时候，必须强制捕获这些异常，否则编译器会报错。</p>
+<p>所有的异常，不在调用层捕获，也必须在更高的调用层捕获。所有未捕获的异常，最终也必须在<code>main()</code>方法中捕获。当然测试的时候，<code>main()</code>也可以throws。</p>
+<p>所有异常都可以调用<code>printStackTrace()</code>方法打印异常栈</p>
+<pre><code>catch (Exception e) {
+        // 先记下来再说:
+        e.printStackTrace();
+    }
+</code></pre><p>多个<code>catch</code>语句按顺序先后判断，只有一个能被执行。</p>
+<p><code>finally</code>语句块保证有无错误都会执行。</p>
+<p><strong>异常的结构</strong></p>
+<pre><code class="language-ascii" data-lang="ascii">Exception
+│
+├─ RuntimeException
+│  │
+│  ├─ NullPointerException
+│  │
+│  ├─ IndexOutOfBoundsException
+│  │
+│  ├─ SecurityException
+│  │
+│  └─ IllegalArgumentException
+│     │
+│     └─ NumberFormatException
+│
+├─ IOException
+│  │
+│  ├─ UnsupportedCharsetException
+│  │
+│  ├─ FileNotFoundException
+│  │
+│  └─ SocketException
+│
+├─ ParseException
+│
+├─ GeneralSecurityException
+│
+├─ SQLException
+│
+└─ TimeoutException
+</code></pre><h3 id="heading3">日志</h3>
+<h4 id="commons-logging">Commons Logging</h4>
+<p>使用Commons Logging只需要和两个类打交道，并且只有两步：</p>
+<p>第一步，通过<code>LogFactory</code>获取<code>Log</code>类的实例； 第二步，使用<code>Log</code>实例的方法打日志。</p>
+<p>Commons Logging定义了6个日志级别：</p>
+<ul>
+<li>FATAL</li>
+<li>ERROR</li>
+<li>WARNING</li>
+<li>INFO</li>
+<li>DEBUG</li>
+<li>TRACE</li>
+</ul>
+<pre><code>public class Person {
+    protected final Log log = LogFactory.getLog(getClass());
+
+    void foo() {
+        log.info(&quot;foo&quot;);
+    }
+}
+</code></pre><h4 id="log4j">Log4j</h4>
+<p>主要是配置</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;Configuration&gt;
+	&lt;Properties&gt;
+        &lt;!-- 定义日志格式 --&gt;
+		&lt;Property name=&quot;log.pattern&quot;&gt;%d{MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36}%n%msg%n%n&lt;/Property&gt;
+        &lt;!-- 定义文件名变量 --&gt;
+		&lt;Property name=&quot;file.err.filename&quot;&gt;log/err.log&lt;/Property&gt;
+		&lt;Property name=&quot;file.err.pattern&quot;&gt;log/err.%i.log.gz&lt;/Property&gt;
+	&lt;/Properties&gt;
+    &lt;!-- 定义Appender，即目的地 --&gt;
+	&lt;Appenders&gt;
+        &lt;!-- 定义输出到屏幕 --&gt;
+		&lt;Console name=&quot;console&quot; target=&quot;SYSTEM_OUT&quot;&gt;
+            &lt;!-- 日志格式引用上面定义的log.pattern --&gt;
+			&lt;PatternLayout pattern=&quot;${log.pattern}&quot; /&gt;
+		&lt;/Console&gt;
+        &lt;!-- 定义输出到文件,文件名引用上面定义的file.err.filename --&gt;
+		&lt;RollingFile name=&quot;err&quot; bufferedIO=&quot;true&quot; fileName=&quot;${file.err.filename}&quot; filePattern=&quot;${file.err.pattern}&quot;&gt;
+			&lt;PatternLayout pattern=&quot;${log.pattern}&quot; /&gt;
+			&lt;Policies&gt;
+                &lt;!-- 根据文件大小自动切割日志 --&gt;
+				&lt;SizeBasedTriggeringPolicy size=&quot;1 MB&quot; /&gt;
+			&lt;/Policies&gt;
+            &lt;!-- 保留最近10份 --&gt;
+			&lt;DefaultRolloverStrategy max=&quot;10&quot; /&gt;
+		&lt;/RollingFile&gt;
+	&lt;/Appenders&gt;
+	&lt;Loggers&gt;
+		&lt;Root level=&quot;info&quot;&gt;
+            &lt;!-- 对info级别的日志，输出到console --&gt;
+			&lt;AppenderRef ref=&quot;console&quot; level=&quot;info&quot; /&gt;
+            &lt;!-- 对error级别的日志，输出到err，即上面定义的RollingFile --&gt;
+			&lt;AppenderRef ref=&quot;err&quot; level=&quot;error&quot; /&gt;
+		&lt;/Root&gt;
+	&lt;/Loggers&gt;
+&lt;/Configuration&gt;
+</code></pre>
+    </div>
+    <div class="post-footer">
+      
+    </div>
+  </article>
+
+    </main>
+  </body>
+</html>
