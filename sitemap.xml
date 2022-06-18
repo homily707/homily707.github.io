@@ -2,23 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://homily707.github.io/tags/first/</loc>
-    <lastmod>2022-06-17T08:27:59+08:00</lastmod>
-  </url><url>
-    <loc>https://homily707.github.io/posts/intro/</loc>
-    <lastmod>2022-06-17T08:27:59+08:00</lastmod>
-  </url><url>
-    <loc>https://homily707.github.io/posts/</loc>
-    <lastmod>2022-06-17T08:27:59+08:00</lastmod>
-  </url><url>
-    <loc>https://homily707.github.io/tags/</loc>
-    <lastmod>2022-06-17T08:27:59+08:00</lastmod>
-  </url><url>
-    <loc>https://homily707.github.io/</loc>
-    <lastmod>2022-06-17T08:27:59+08:00</lastmod>
-  </url><url>
     <loc>https://homily707.github.io/categories/</loc>
   </url><url>
     <loc>https://homily707.github.io/search/</loc>
+  </url><url>
+    <loc>https://homily707.github.io/tags/</loc>
+  </url><url>
+    <loc>https://homily707.github.io/</loc>
   </url>
 </urlset>
