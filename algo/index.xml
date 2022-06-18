@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>斯是陋室</title>
-    <link>https://homily707.github.io/</link>
-    <description>Recent content on 斯是陋室</description>
+    <title>Algoes on 斯是陋室</title>
+    <link>https://homily707.github.io/algo/</link>
+    <description>Recent content in Algoes on 斯是陋室</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 18 Jun 2022 11:19:16 +0800</lastBuildDate><atom:link href="https://homily707.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 18 Jun 2022 11:19:16 +0800</lastBuildDate><atom:link href="https://homily707.github.io/algo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>BinaryIndexTree</title>
       <link>https://homily707.github.io/algo/binaryindextree/</link>
@@ -14,7 +14,6 @@
       <guid>https://homily707.github.io/algo/binaryindextree/</guid>
       <description>树状数组 package datastruct // Integer type BinaryIndexTree struct { Data []int SumSlice []int Len int } func (bit *BinaryIndexTree) Init(array []int) { bit.Len = len(array) bit.Data = array bit.SumSlice = make([]int, bit.Len+1) for i, num := range array { bit.addInSum(i, num) } } func (bit *BinaryIndexTree) Add(index int, delta int) { bit.Data[index] += delta bit.addInSum(index, delta) } func (bit *BinaryIndexTree) Sum(left int, right int) int { return bit.getPreSum(right-1) - bit.getPreSum(left-1) } func (bit *BinaryIndexTree) addInSum(index int, delta int) { index++ for index &amp;lt;= bit.</description>
     </item>
-    
     
   </channel>
 </rss>
