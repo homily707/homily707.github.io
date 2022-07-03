@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>6.824 on 斯是陋室</title>
+    <link>https://homily707.github.io/tags/6.824/</link>
+    <description>Recent content in 6.824 on 斯是陋室</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 02 May 2022 13:09:12 +0800</lastBuildDate><atom:link href="https://homily707.github.io/tags/6.824/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>6.824 Lab2 Coding</title>
+      <link>https://homily707.github.io/posts/db/6.824-lab2-coding/</link>
+      <pubDate>Mon, 02 May 2022 13:09:12 +0800</pubDate>
+      
+      <guid>https://homily707.github.io/posts/db/6.824-lab2-coding/</guid>
+      <description>flow
+livelocks 系统没有阻塞。但是状态来回转换，没有进展。比如多节点同时竞选。
+当收到心跳、自己参与竞选、收到竞选申请时，三种情况下，都要重置election timeout 计时
+Incorrect RPC handler 如果reply false，快速结束，不要执行其余子过程 entries为null的rpc也要处理 日志处理的rule5是必要的 Failure to follow rule 确保apply只进行了一次 周期检查commit和apply或者每次commit时apply 如果append 由于term不一致被拒绝，不要更新nextIndex 不能更新以前term的commit Term confusion 当获得来自以前term的reply。如果term不同，不处理 2A：leader election 官方hints
+RequestVote 参加竞选 handler 参与投票。5秒内选出新leader AppendEntries 心跳。 每秒不超过十次 犯的几个错：
+忘了维护votedFor的值 心跳的间隔时间要确保小于随机check时间 旧主以及竞选失败者 收到心跳时，没有退化 旧主disconnects，进入election，但是没有竞选 leader 也给自己发了心跳 收到竞选，停止心跳检查，停止参加竞选 计票统计，没有并发控制 参与竞选，要并发执行 几个实现：
+log 标准化，每次打印当前 raft的状态的，并用emoji来区分 log.SetFlags(log.Lmicroseconds) 可变参数的引用和解引用 func (rf Raft) Log(format string, args ...interface{}) { RaftPrintf(format, args...) } 2B：log 官方hints
+实现 election restriction 可能会出现多主的bug，请查看timer的实现或者不要立刻发心跳 通过condition 或者 sleep，不要让检查状态的进程死循环 犯的错</description>
+    </item>
+    
+    <item>
+      <title>6.824 Lab2 Paper</title>
+      <link>https://homily707.github.io/posts/db/6.824-lab2-paper/</link>
+      <pubDate>Mon, 02 May 2022 13:08:10 +0800</pubDate>
+      
+      <guid>https://homily707.github.io/posts/db/6.824-lab2-paper/</guid>
+      <description>replicated state machines 多个状态机保持相同的状态
+实现，通过日志，按顺序保存command。先复制，再执行
+非拜占庭问题下正常工作 多数节点可用时整体可用 paxos 缺点 难以理解、不好实现
+设计 分解、减少状态
+algorithm basics 最少5个节点 三种节点 leader、follower、candidate 每一次选举都是一次term，选举失败也算一次。 每个节点存储当前 term，并在每次交流中带上，如果自己过时了（乃不知有汉，无论魏晋），则跟上最新的。leader和candidater 如果发现过时，退为follower RPC 有两种vote、 append 、 （retry） 选主 心跳 开始都是follower。leader会定期发送心跳（没有log的 appendRpc）
+election timeout，follower长期没收到心跳，开始竞选。增加 term，切为 candidate，开始循环给所有人发送 voteRpc。会有3种结果 自己选上、别人选上、超时
+选举，每个节点投票给第一个找自己竞选的，参选者投自己。
+收到超过半数的投票，自己上任，给别人发心跳。如果收到竞选term的leader指令，代表自己失败。
+如果超时，增加term，重新竞选。
+防止多人参选，随机election timeout。candidate需要每次选举前，更新随机timeout
+日志复制 先群发 appendRpc。超过半数确认，然后commit。append中下发commited index 超时无响应，重发
+日志信息保存term
+append 带上 上一次的entry，follower没找到这个的话，说明有漏，就不接受 主节点被拒绝后，会减小index
+当主节点出错时，新任leader强制以自己的log为准 主节点保存所有从的 nextIndex
+Safety 之前两节并不能保证各节点 exec same command in same order。比如一个落后很多的节点，timeout后竞选成为主节点然后执行后续命令会导致其他节点出错。
+这一节添加了选为主节点的限制。保证每个任期的leader都持有所有已提交的命令。 并且精细了commit的规则 最后，给出了证明
+5.4.1 election restriction 有主节点的共识算法，主节点必须存储所有已提交entries。
+Raft在不向主节点传递日志的情况下实现这一点。log流向只会从主节点发往其他</description>
+    </item>
+    
+    <item>
+      <title>6.824 Lab2 Guide</title>
+      <link>https://homily707.github.io/posts/db/6.824-lab2-guide/</link>
+      <pubDate>Mon, 02 May 2022 11:37:08 +0800</pubDate>
+      
+      <guid>https://homily707.github.io/posts/db/6.824-lab2-guide/</guid>
+      <description>guidance Read this guide for Raft specific advice. Advice on locking in labs. Advice on structuring your Raft lab. This Diagram of Raft interactions may help you understand code flow between different parts of the system. Dprint and colorful print debuging fault因 error 果 （隐藏的error， 出现的error，masked的error） 程序的三种状态
+程序正确，但是已经有 fault fault已经产生latent error。但是还未明显影响程序状态 error出现 做法
+想办法，减少阶段2持续的时间，所以就能更快的定位1切换到2的时候。 保持头脑清醒，聚焦当前的first observable error，不停的往前追溯。 bisection instrumentation
+要能方便地调节log的详细程度 可读性，颜色，保持一致的输出 加强新增日志能力 tips
+多个faults时，先找第一个 不要轻易排除，不要依赖你脑海中的模型，always verify your assumptions 复盘 不要做 不成熟的补救 fail loudly， offensive programming 偶发bug，疯狂的输出日志，坐等复现 先想想what the fuck the test is doing </description>
+    </item>
+    
+    <item>
+      <title>6.824 Lab1</title>
+      <link>https://homily707.github.io/posts/db/6.824-lab1/</link>
+      <pubDate>Fri, 22 Apr 2022 11:42:44 +0800</pubDate>
+      
+      <guid>https://homily707.github.io/posts/db/6.824-lab1/</guid>
+      <description>实现 master有四个状态，不同的状态使用不同的处理逻辑。而worker是无状态的，直接干活job就行了，只用判断一下job的类型 map reduce的原理很好理解，直接实现即可 master用两个 chan 来保存当前要下发的map job 和 reduce job，用一个RWMap来管理job的状态。因为涉及并发，每次都要上锁。
+错误处理 job下发时记录下下发时间，收到job完成时要和下发时间进行比较。在Done函数中，定时遍历检查job状态，有超时的重新传入chan。
+库函数积累 json.NewDecoder(file)
+json.NewEncoder(tempFile)
+dec.Decode(&amp;amp;kv)
+ioutil.TempFile</description>
+    </item>
+    
+  </channel>
+</rss>

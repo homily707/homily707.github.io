@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>k8s on 斯是陋室</title>
+    <link>https://homily707.github.io/tags/k8s/</link>
+    <description>Recent content in k8s on 斯是陋室</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 02 Jul 2022 11:31:44 +0800</lastBuildDate><atom:link href="https://homily707.github.io/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubebuilder</title>
+      <link>https://homily707.github.io/posts/k8s/kubebuilder/</link>
+      <pubDate>Sat, 02 Jul 2022 11:31:44 +0800</pubDate>
+      
+      <guid>https://homily707.github.io/posts/k8s/kubebuilder/</guid>
+      <description>building kubebuilder init --domain tutorial.kubebuilder.io --repo tutorial.kubebuilder.io/project kubebuilder create api --group batch k--version v1 --kind CronJob config/manager: launch your controllers as pods in the cluster config/rbac: permissions required to run your controllers under their own service account config/default contains a Kustomize base for launching the controller in a standard configuration. main Scheme, Kinds 映射到 Go types
+manager, 监控 controller，配置 cache client
+Api domain tutorial.kubebuilder.io kubebuilder create api --group batch --version v1 --kind CronJob 对应的apiVersion就是 batch.</description>
+    </item>
+    
+  </channel>
+</rss>

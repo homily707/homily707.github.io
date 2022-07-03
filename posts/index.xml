@@ -5,14 +5,146 @@
     <link>https://homily707.github.io/posts/</link>
     <description>Recent content in Posts on 斯是陋室</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 17 Jun 2022 08:27:59 +0800</lastBuildDate><atom:link href="https://homily707.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 02 Jul 2022 11:31:44 +0800</lastBuildDate><atom:link href="https://homily707.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Intro</title>
-      <link>https://homily707.github.io/posts/intro/</link>
-      <pubDate>Fri, 17 Jun 2022 08:27:59 +0800</pubDate>
+      <title>Kubebuilder</title>
+      <link>https://homily707.github.io/posts/k8s/kubebuilder/</link>
+      <pubDate>Sat, 02 Jul 2022 11:31:44 +0800</pubDate>
       
-      <guid>https://homily707.github.io/posts/intro/</guid>
-      <description>爱我小宝 喜欢小宝嘻嘻嘻嘻 🥰</description>
+      <guid>https://homily707.github.io/posts/k8s/kubebuilder/</guid>
+      <description>building kubebuilder init --domain tutorial.kubebuilder.io --repo tutorial.kubebuilder.io/project kubebuilder create api --group batch k--version v1 --kind CronJob config/manager: launch your controllers as pods in the cluster config/rbac: permissions required to run your controllers under their own service account config/default contains a Kustomize base for launching the controller in a standard configuration. main Scheme, Kinds 映射到 Go types
+manager, 监控 controller，配置 cache client
+Api domain tutorial.kubebuilder.io kubebuilder create api --group batch --version v1 --kind CronJob 对应的apiVersion就是 batch.</description>
+    </item>
+    
+    <item>
+      <title>分布式数据库笔记</title>
+      <link>https://homily707.github.io/posts/db/distribute-30/</link>
+      <pubDate>Fri, 03 Jun 2022 10:54:06 +0800</pubDate>
+      
+      <guid>https://homily707.github.io/posts/db/distribute-30/</guid>
+      <description>存储的设计 事务模型 查询引擎 复制 基础篇 外部视角 写多读少、低延时、高并发
+海量并发（分布式和单体的区别）
+高可靠
+rto 恢复时间 rpo 恢复点
+海量存储
+内部视角 客户端组件 + 单体 sharding jdbc 中间件 + 单体。 MyCat 应用层重构 + 单体 数据一致性 状态一致性
+强一致：mysql 全同步复制 弱一致：eventually consistency 操作一致性
+写后读 写入成功，异步复制，保证写入者能读到 单调读 读过的数据，不会消失。将用户和副本建立映射关系。 前缀 保证事件复制的因果关系 线性一致性 Linearizability 所有操作可以比较先后顺序。通过全局时钟建立全序关系。 线性一致性是描述历史记录的，而不是描述系统的。我们可以判断访问系统获取的一系列历史记录，来判断这个结果是不是线性一致，从而判断这个系统是否能实现线性一致。 因果一致 逻辑时钟，建立不那么准确的 全序关系 事务一致性 ACID
+一致性：整体目标
+持久性：数据丢失、故障容错。write ahead log， 多副本
+隔离性 异常现象 幻读： T1 查询两次， T2插入。T1第2次读结果集增大
+不可重复读： T1 查询两次， T2修改并提交。T1两次读结果不一致
+脏读： T1 查询两次， T2修改但未提交。T1两次读结果不一致
+隔离级别 未提交读： 脏读</description>
+    </item>
+    
+    <item>
+      <title>跳表</title>
+      <link>https://homily707.github.io/posts/algo/skiplist/</link>
+      <pubDate>Thu, 02 Jun 2022 13:33:21 +0800</pubDate>
+      
+      <guid>https://homily707.github.io/posts/algo/skiplist/</guid>
+      <description>原理 实现要点 show me the code </description>
+    </item>
+    
+    <item>
+      <title>6.824 Lab2 Coding</title>
+      <link>https://homily707.github.io/posts/db/6.824-lab2-coding/</link>
+      <pubDate>Mon, 02 May 2022 13:09:12 +0800</pubDate>
+      
+      <guid>https://homily707.github.io/posts/db/6.824-lab2-coding/</guid>
+      <description>flow
+livelocks 系统没有阻塞。但是状态来回转换，没有进展。比如多节点同时竞选。
+当收到心跳、自己参与竞选、收到竞选申请时，三种情况下，都要重置election timeout 计时
+Incorrect RPC handler 如果reply false，快速结束，不要执行其余子过程 entries为null的rpc也要处理 日志处理的rule5是必要的 Failure to follow rule 确保apply只进行了一次 周期检查commit和apply或者每次commit时apply 如果append 由于term不一致被拒绝，不要更新nextIndex 不能更新以前term的commit Term confusion 当获得来自以前term的reply。如果term不同，不处理 2A：leader election 官方hints
+RequestVote 参加竞选 handler 参与投票。5秒内选出新leader AppendEntries 心跳。 每秒不超过十次 犯的几个错：
+忘了维护votedFor的值 心跳的间隔时间要确保小于随机check时间 旧主以及竞选失败者 收到心跳时，没有退化 旧主disconnects，进入election，但是没有竞选 leader 也给自己发了心跳 收到竞选，停止心跳检查，停止参加竞选 计票统计，没有并发控制 参与竞选，要并发执行 几个实现：
+log 标准化，每次打印当前 raft的状态的，并用emoji来区分 log.SetFlags(log.Lmicroseconds) 可变参数的引用和解引用 func (rf Raft) Log(format string, args ...interface{}) { RaftPrintf(format, args...) } 2B：log 官方hints
+实现 election restriction 可能会出现多主的bug，请查看timer的实现或者不要立刻发心跳 通过condition 或者 sleep，不要让检查状态的进程死循环 犯的错</description>
+    </item>
+    
+    <item>
+      <title>6.824 Lab2 Paper</title>
+      <link>https://homily707.github.io/posts/db/6.824-lab2-paper/</link>
+      <pubDate>Mon, 02 May 2022 13:08:10 +0800</pubDate>
+      
+      <guid>https://homily707.github.io/posts/db/6.824-lab2-paper/</guid>
+      <description>replicated state machines 多个状态机保持相同的状态
+实现，通过日志，按顺序保存command。先复制，再执行
+非拜占庭问题下正常工作 多数节点可用时整体可用 paxos 缺点 难以理解、不好实现
+设计 分解、减少状态
+algorithm basics 最少5个节点 三种节点 leader、follower、candidate 每一次选举都是一次term，选举失败也算一次。 每个节点存储当前 term，并在每次交流中带上，如果自己过时了（乃不知有汉，无论魏晋），则跟上最新的。leader和candidater 如果发现过时，退为follower RPC 有两种vote、 append 、 （retry） 选主 心跳 开始都是follower。leader会定期发送心跳（没有log的 appendRpc）
+election timeout，follower长期没收到心跳，开始竞选。增加 term，切为 candidate，开始循环给所有人发送 voteRpc。会有3种结果 自己选上、别人选上、超时
+选举，每个节点投票给第一个找自己竞选的，参选者投自己。
+收到超过半数的投票，自己上任，给别人发心跳。如果收到竞选term的leader指令，代表自己失败。
+如果超时，增加term，重新竞选。
+防止多人参选，随机election timeout。candidate需要每次选举前，更新随机timeout
+日志复制 先群发 appendRpc。超过半数确认，然后commit。append中下发commited index 超时无响应，重发
+日志信息保存term
+append 带上 上一次的entry，follower没找到这个的话，说明有漏，就不接受 主节点被拒绝后，会减小index
+当主节点出错时，新任leader强制以自己的log为准 主节点保存所有从的 nextIndex
+Safety 之前两节并不能保证各节点 exec same command in same order。比如一个落后很多的节点，timeout后竞选成为主节点然后执行后续命令会导致其他节点出错。
+这一节添加了选为主节点的限制。保证每个任期的leader都持有所有已提交的命令。 并且精细了commit的规则 最后，给出了证明
+5.4.1 election restriction 有主节点的共识算法，主节点必须存储所有已提交entries。
+Raft在不向主节点传递日志的情况下实现这一点。log流向只会从主节点发往其他</description>
+    </item>
+    
+    <item>
+      <title>6.824 Lab2 Guide</title>
+      <link>https://homily707.github.io/posts/db/6.824-lab2-guide/</link>
+      <pubDate>Mon, 02 May 2022 11:37:08 +0800</pubDate>
+      
+      <guid>https://homily707.github.io/posts/db/6.824-lab2-guide/</guid>
+      <description>guidance Read this guide for Raft specific advice. Advice on locking in labs. Advice on structuring your Raft lab. This Diagram of Raft interactions may help you understand code flow between different parts of the system. Dprint and colorful print debuging fault因 error 果 （隐藏的error， 出现的error，masked的error） 程序的三种状态
+程序正确，但是已经有 fault fault已经产生latent error。但是还未明显影响程序状态 error出现 做法
+想办法，减少阶段2持续的时间，所以就能更快的定位1切换到2的时候。 保持头脑清醒，聚焦当前的first observable error，不停的往前追溯。 bisection instrumentation
+要能方便地调节log的详细程度 可读性，颜色，保持一致的输出 加强新增日志能力 tips
+多个faults时，先找第一个 不要轻易排除，不要依赖你脑海中的模型，always verify your assumptions 复盘 不要做 不成熟的补救 fail loudly， offensive programming 偶发bug，疯狂的输出日志，坐等复现 先想想what the fuck the test is doing </description>
+    </item>
+    
+    <item>
+      <title>6.824 Lab1</title>
+      <link>https://homily707.github.io/posts/db/6.824-lab1/</link>
+      <pubDate>Fri, 22 Apr 2022 11:42:44 +0800</pubDate>
+      
+      <guid>https://homily707.github.io/posts/db/6.824-lab1/</guid>
+      <description>实现 master有四个状态，不同的状态使用不同的处理逻辑。而worker是无状态的，直接干活job就行了，只用判断一下job的类型 map reduce的原理很好理解，直接实现即可 master用两个 chan 来保存当前要下发的map job 和 reduce job，用一个RWMap来管理job的状态。因为涉及并发，每次都要上锁。
+错误处理 job下发时记录下下发时间，收到job完成时要和下发时间进行比较。在Done函数中，定时遍历检查job状态，有超时的重新传入chan。
+库函数积累 json.NewDecoder(file)
+json.NewEncoder(tempFile)
+dec.Decode(&amp;amp;kv)
+ioutil.TempFile</description>
+    </item>
+    
+    <item>
+      <title>Bubbletea</title>
+      <link>https://homily707.github.io/posts/go/bubbletea/</link>
+      <pubDate>Wed, 02 Mar 2022 11:30:22 +0800</pubDate>
+      
+      <guid>https://homily707.github.io/posts/go/bubbletea/</guid>
+      <description> </description>
+    </item>
+    
+    <item>
+      <title>Tidb-learning-0</title>
+      <link>https://homily707.github.io/posts/db/tidb-0/</link>
+      <pubDate>Tue, 02 Nov 2021 11:26:42 +0800</pubDate>
+      
+      <guid>https://homily707.github.io/posts/db/tidb-0/</guid>
+      <description> </description>
+    </item>
+    
+    <item>
+      <title>树状数组</title>
+      <link>https://homily707.github.io/posts/algo/binaryindextree/</link>
+      <pubDate>Mon, 18 May 2020 11:19:16 +0800</pubDate>
+      
+      <guid>https://homily707.github.io/posts/algo/binaryindextree/</guid>
+      <description>原理理解 lowbit 就是数字的最低位 11000 -》 1000
+在树状数组中，我们用lowbit表示这个下标的sum，包含了几个数。比如 11010 的 lowbit 为 10，即他管辖了 （11000，11010] 这两个数的和，左开右闭。所以当我们要求【0，x】的和的时候，就是求[0，x-lowbit(x)]+（x-lowbit(x),x] ，后者我们已经存储好了，前者通过迭代的方式求出。因为是左开右闭，我们实际只能求到（0,x]，所以我们要能额外添加一个index为0的，值也为0的值。所以在实现的时候，真正的数字是从下标1开始的。
+一个数加上自己lowbit 11010 + 10 = 11100， 实现的就是最低位的进位，而这个进位所得到的数，一定是管辖自己的数。
+实现要点 sum数组的下标和原始数组的下标存在加1的关系 lowbit 用 x&amp;amp;-x实现 show me the code type BinaryIndexTree struct { Data []int SumSlice []int Len int } func (bit *BinaryIndexTree) Init(array []int) { bit.Len = len(array) bit.Data = array bit.SumSlice = make([]int, bit.Len+1) for i, num := range array { bit.addInSum(i, num) } } func (bit *BinaryIndexTree) Add(index int, delta int) { bit.</description>
     </item>
     
   </channel>
