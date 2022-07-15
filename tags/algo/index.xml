@@ -5,16 +5,7 @@
     <link>https://homily707.github.io/tags/algo/</link>
     <description>Recent content in algo on 斯是陋室</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 02 Jun 2022 13:33:21 +0800</lastBuildDate><atom:link href="https://homily707.github.io/tags/algo/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>跳表</title>
-      <link>https://homily707.github.io/posts/algo/skiplist/</link>
-      <pubDate>Thu, 02 Jun 2022 13:33:21 +0800</pubDate>
-      
-      <guid>https://homily707.github.io/posts/algo/skiplist/</guid>
-      <description>原理 实现要点 show me the code </description>
-    </item>
-    
+    <lastBuildDate>Mon, 18 May 2020 11:19:16 +0800</lastBuildDate><atom:link href="https://homily707.github.io/tags/algo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>树状数组</title>
       <link>https://homily707.github.io/posts/algo/binaryindextree/</link>

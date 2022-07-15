@@ -5,29 +5,7 @@
     <link>https://homily707.github.io/tags/data/</link>
     <description>Recent content in data on 斯是陋室</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 03 Jun 2022 10:54:06 +0800</lastBuildDate><atom:link href="https://homily707.github.io/tags/data/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>分布式数据库笔记</title>
-      <link>https://homily707.github.io/posts/db/distribute-30/</link>
-      <pubDate>Fri, 03 Jun 2022 10:54:06 +0800</pubDate>
-      
-      <guid>https://homily707.github.io/posts/db/distribute-30/</guid>
-      <description>存储的设计 事务模型 查询引擎 复制 基础篇 外部视角 写多读少、低延时、高并发
-海量并发（分布式和单体的区别）
-高可靠
-rto 恢复时间 rpo 恢复点
-海量存储
-内部视角 客户端组件 + 单体 sharding jdbc 中间件 + 单体。 MyCat 应用层重构 + 单体 数据一致性 状态一致性
-强一致：mysql 全同步复制 弱一致：eventually consistency 操作一致性
-写后读 写入成功，异步复制，保证写入者能读到 单调读 读过的数据，不会消失。将用户和副本建立映射关系。 前缀 保证事件复制的因果关系 线性一致性 Linearizability 所有操作可以比较先后顺序。通过全局时钟建立全序关系。 线性一致性是描述历史记录的，而不是描述系统的。我们可以判断访问系统获取的一系列历史记录，来判断这个结果是不是线性一致，从而判断这个系统是否能实现线性一致。 因果一致 逻辑时钟，建立不那么准确的 全序关系 事务一致性 ACID
-一致性：整体目标
-持久性：数据丢失、故障容错。write ahead log， 多副本
-隔离性 异常现象 幻读： T1 查询两次， T2插入。T1第2次读结果集增大
-不可重复读： T1 查询两次， T2修改并提交。T1两次读结果不一致
-脏读： T1 查询两次， T2修改但未提交。T1两次读结果不一致
-隔离级别 未提交读： 脏读</description>
-    </item>
-    
+    <lastBuildDate>Mon, 02 May 2022 13:09:12 +0800</lastBuildDate><atom:link href="https://homily707.github.io/tags/data/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>6.824 Lab2 Coding</title>
       <link>https://homily707.github.io/posts/db/6.824-lab2-coding/</link>
@@ -98,12 +76,53 @@ ioutil.TempFile</description>
     </item>
     
     <item>
+      <title>Godis</title>
+      <link>https://homily707.github.io/posts/db/godis/</link>
+      <pubDate>Fri, 15 Apr 2022 22:54:00 +0800</pubDate>
+      
+      <guid>https://homily707.github.io/posts/db/godis/</guid>
+      <description>TCP bufio.Reader 带缓冲的 reader.ReadString(&amp;quot;\n&amp;quot;). 读到分隔符为止
+每个连接 goroutine 处理， waitGroup.add 并且 defer waitGroup.Done ， 主routine出错后也要 waitGroup.wait所有连接处理完
+signal.Notify 监听退出信号 并用 chan struct{}. 与主routine通信。主routine 使用&amp;lt;-chan 保证通道只读
+粘包
+Map 分段锁， 每一个shard内用RwLock。进阶渐进式rehash
+操作原子性保证，同时给多个shard上锁。不delete锁，以免并发竞争。避免死锁，先排序shard，保证多个锁获取时，必须按顺序。
+AOF 过期时间的逻辑处理
+每次set的时候给通道发消息，异步routine处理
+aof重写：redis 用的fork。godis用的aof生成副本，和ddl的异步更新有相同的意思
+ZSet zset的实现。span实现rank，head虚节点作为首节点
+type Level struct { forward *node // forward node has greater score span int64 } type node struct { Element backward *node level []*Level // level[0] is base level } type skiplist struct { header *node tail *node length int64 level int16 } Pipeline client 两个chan</description>
+    </item>
+    
+    <item>
       <title>Tidb-learning-0</title>
       <link>https://homily707.github.io/posts/db/tidb-0/</link>
       <pubDate>Tue, 02 Nov 2021 11:26:42 +0800</pubDate>
       
       <guid>https://homily707.github.io/posts/db/tidb-0/</guid>
       <description> </description>
+    </item>
+    
+    <item>
+      <title>分布式数据库笔记</title>
+      <link>https://homily707.github.io/posts/db/distribute-30/</link>
+      <pubDate>Thu, 03 Jun 2021 10:54:06 +0800</pubDate>
+      
+      <guid>https://homily707.github.io/posts/db/distribute-30/</guid>
+      <description>存储的设计 事务模型 查询引擎 复制 基础篇 外部视角 写多读少、低延时、高并发
+海量并发（分布式和单体的区别）
+高可靠
+rto 恢复时间 rpo 恢复点
+海量存储
+内部视角 客户端组件 + 单体 sharding jdbc 中间件 + 单体。 MyCat 应用层重构 + 单体 数据一致性 状态一致性
+强一致：mysql 全同步复制 弱一致：eventually consistency 操作一致性
+写后读 写入成功，异步复制，保证写入者能读到 单调读 读过的数据，不会消失。将用户和副本建立映射关系。 前缀 保证事件复制的因果关系 线性一致性 Linearizability 所有操作可以比较先后顺序。通过全局时钟建立全序关系。 线性一致性是描述历史记录的，而不是描述系统的。我们可以判断访问系统获取的一系列历史记录，来判断这个结果是不是线性一致，从而判断这个系统是否能实现线性一致。 因果一致 逻辑时钟，建立不那么准确的 全序关系 事务一致性 ACID
+一致性：整体目标
+持久性：数据丢失、故障容错。write ahead log， 多副本
+隔离性 异常现象 幻读： T1 查询两次， T2插入。T1第2次读结果集增大
+不可重复读： T1 查询两次， T2修改并提交。T1两次读结果不一致
+脏读： T1 查询两次， T2修改但未提交。T1两次读结果不一致
+隔离级别 未提交读： 脏读</description>
     </item>
     
   </channel>
