@@ -2,63 +2,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on 斯是陋室</title>
-    <link>https://homily707.github.io/tags/</link>
+    <link>http://example.org/tags/</link>
     <description>Recent content in Tags on 斯是陋室</description>
+    <image>
+      <title>斯是陋室</title>
+      <url>http://example.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>http://example.org/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Fri, 10 Jun 2022 22:39:11 +0800</lastBuildDate><atom:link href="https://homily707.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>go</title>
-      <link>https://homily707.github.io/tags/go/</link>
-      <pubDate>Fri, 10 Jun 2022 22:39:11 +0800</pubDate>
-      
-      <guid>https://homily707.github.io/tags/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>k8s</title>
-      <link>https://homily707.github.io/tags/k8s/</link>
-      <pubDate>Fri, 10 Jun 2022 22:39:11 +0800</pubDate>
-      
-      <guid>https://homily707.github.io/tags/k8s/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>6.824</title>
-      <link>https://homily707.github.io/tags/6.824/</link>
-      <pubDate>Mon, 02 May 2022 13:09:12 +0800</pubDate>
-      
-      <guid>https://homily707.github.io/tags/6.824/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>data</title>
-      <link>https://homily707.github.io/tags/data/</link>
-      <pubDate>Mon, 02 May 2022 13:09:12 +0800</pubDate>
-      
-      <guid>https://homily707.github.io/tags/data/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tidb</title>
-      <link>https://homily707.github.io/tags/tidb/</link>
-      <pubDate>Tue, 02 Nov 2021 11:26:42 +0800</pubDate>
-      
-      <guid>https://homily707.github.io/tags/tidb/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>algo</title>
-      <link>https://homily707.github.io/tags/algo/</link>
-      <pubDate>Mon, 18 May 2020 11:19:16 +0800</pubDate>
-      
-      <guid>https://homily707.github.io/tags/algo/</guid>
-      <description></description>
-    </item>
-    
+    <language>en-us</language><atom:link href="http://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
